@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title>Invade The Rift</title>
+    <%- include('partials/head'); %>
   </head>
   <body>
-    <h1>INVADE THE RIFT</h1>
+    <h1>
+      <a class="d-flex justify-content-center" href="/">Invade The Rift</a>
+    </h1>
+
+      <%- include('partials/navbar'); %>
+
+        <div class="container text-center" id="landingNews">
+          <div class="row justify-content-around">
+            <div class="col-4">
+              <h4>Trending Discussions</h4>
+            </div>
+            <div class="col-4">
+              <h4>Official News</h4>
+            </div>
+          </div>
+        </div>
+
+
+    <%- include('partials/baseScripts'); %>
   </body>
 </html>
