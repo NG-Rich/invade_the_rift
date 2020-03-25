@@ -6,13 +6,14 @@ describe("routes : static", () => {
 
   describe("GET /", () => {
 
-    it("should return a status code 200", (done) => {
+    it("should return a status code 200 and have 'Invade The Rift' in body of response", (done) => {
       request.get(base, (err, res, body) => {
         expect(res.statusCode).toBe(200);
+        expect(body).toContain("Invade The Rift");
         done();
       });
     }); // End of "it"
 
   }); // End of "GET /"" describe
-  
+
 }); // End of "routes:static" describe
