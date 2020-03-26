@@ -5,3 +5,9 @@ body {
 #landingNews {
   padding-top: 40px;
 }
+
+#backgroundImg {
+  background-image: url(https://i.imgur.com/yCq5sU0.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
