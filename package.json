@@ -1,0 +1,29 @@
+{
+  "name": "invade_the_rift",
+  "version": "1.0.0",
+  "description": "Web application with an abundance of resources towards the game, Leauge of Legends. Forums available for community discussion.",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "export NODE_ENV=test&& jasmine",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NG-Rich/invade_the_rift.git"
+  },
+  "author": "Richard Chan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NG-Rich/invade_the_rift/issues"
+  },
+  "homepage": "https://github.com/NG-Rich/invade_the_rift#readme",
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
+}
