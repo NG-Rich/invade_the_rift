@@ -13,9 +13,10 @@ Setup is simple since you just need to run `npm start` and the app is up and run
 
 ### Testing
 I've made test specs if you wish to run tests on the app features.  
-1. `static_spec.js` which tests the landing page.  
+1. `static_spec.js` which tests the landing page.
+2. `user_spec.js` which tests behavior of account creation.  
 
-All can be run with `npm test spec/integration/(test_spec_here.js)`.
+All can be run with `npm test spec/(spec_folder)/(test_spec_here.js)`.
 (Further specs will be available when features are in progress)
 
 ### Usage

@@ -1,13 +1,22 @@
 body {
-  padding-top: 30px;
+  padding: 2rem;
 }
 
 #landingNews {
-  padding-top: 40px;
+  padding: 2rem;
 }
 
 #backgroundImg {
   background-image: url('../images/JEdnVm.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 120%;
+}
+
+#userContainer {
+  width: 30rem;
+  padding: 2rem;
+}
+
+.alert {
+  width: 58rem;
 }

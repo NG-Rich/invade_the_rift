@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../static/partials/banner'); %>
+
+    <%- include('../static/partials/navbar'); %>
+
+    <%- include('../static/partials/messages'); %>
+
+      <div class="d-flex justify-content-center" style="padding: 2rem;">
+        <div class="jumbotron text-center" id="userContainer">
+          <form class="form" action="/users/sign_in" method="post">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+              <small class="text-muted" id="emailHelp">email must be a valid address</small>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" name="password" aria-describedby="passwordHelp" placeholder="Enter password">
+              <small class="text-muted" id="passwordHelp">password must 6 characters minimum</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+          </form>
+        </div>
+      </div>
+
+    <%- include('../static/partials/baseScripts'); %>
+  </body>
+</html>

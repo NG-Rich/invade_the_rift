@@ -18,12 +18,22 @@
   },
   "homepage": "https://github.com/NG-Rich/invade_the_rift#readme",
   "devDependencies": {
-    "jasmine": "^3.5.0"
+    "jasmine": "^3.5.0",
+    "request": "^2.88.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "request": "^2.88.2"
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.0",
+    "express-validator": "^5.3.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pg": "^8.0.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.5"
   }
 }
