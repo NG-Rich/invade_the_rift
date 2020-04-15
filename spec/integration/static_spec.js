@@ -16,4 +16,6 @@ describe("routes : static", () => {
 
   }); // End of "GET /"" describe
 
+  // ADD SPEC FOR DISPLAYING TRENDING DISCUSSIONS + OFFICIAL POSTS
+
 }); // End of "routes:static" describe

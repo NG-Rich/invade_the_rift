@@ -6,9 +6,7 @@
        <span aria-hidden="true">&times;</span>
      </button>
      <% if(messages.error) { %>
-     Validation errors:
      <ul>
-
        <% messages.error.forEach((err) => { %>
          <li><%= `${err.param} ${err.msg}` %></li>
        <% }) %>

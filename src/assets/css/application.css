@@ -6,6 +6,10 @@ body {
   padding: 2rem;
 }
 
+#headerFonts {
+  padding: .5rem;
+}
+
 #backgroundImg {
   background-image: url('../images/JEdnVm.jpg');
   background-repeat: no-repeat;
@@ -15,6 +19,13 @@ body {
 #userContainer {
   width: 30rem;
   padding: 2rem;
+}
+
+#formContainer {
+  padding: 2rem;
+  background-color: white;
+  border-radius: .2rem;
+  width: 58rem;
 }
 
 .alert {

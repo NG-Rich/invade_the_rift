@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../static/partials/banner'); %>
+    <%- include('../static/partials/navbar'); %>
+    <%- include('../static/partials/messages'); %>
+
+    <main class="container text-center">
+
+      <h2 id="headerFonts">Forums</h2>
+
+      <nav aria-label="breadcrumb" style="height: 3rem; width: fit-content;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Forums</li>
+        </ol>
+      </nav>
+
+      <ul class="list-group">
+        <% discussions.forEach((discussion) => { %>
+          <li class="list-group-item">
+            <a href="/forums/discussion/<%= discussion.id %>"> <%= discussion.title %> </a>
+          <!--  <small class="text-muted"><%= discussion.description %></small> maybe add this-->
+          </li>
+        <% }) %>
+      </ul>
+
+      <nav class="justify-content-right" aria-label="pageNavigation">
+        <ul class="pagination justify-content-end">
+          <a href="/forums/discussion/new">
+            <button type="submit" class="btn btn-success btn">New Discussion</button>
+          </a>
+          <li class="page-item">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page) - 1}` %> tabindex="-1" aria-label="Previous">
+              Previous
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page) - 1}` %>>
+              <%= parseInt(page) - 1 %>
+            </a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page) + 1}` %>>
+              <%= page %>
+            </a><span class="sr-only">(current)</span>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page) + 1}` %>>
+              <%= parseInt(page) + 1  %>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page) + 1}` %> aria-label="Next">
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </main>
+
+    <%- include('../static/partials/baseScripts'); %>
+  </body>
+</html>

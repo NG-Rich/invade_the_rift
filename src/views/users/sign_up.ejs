@@ -5,12 +5,10 @@
   </head>
   <body id="backgroundImg">
     <%- include('../static/partials/banner'); %>
-
     <%- include('../static/partials/navbar'); %>
-
     <%- include('../static/partials/messages'); %>
 
-      <div class="d-flex justify-content-center" style="padding: 2rem;">
+      <main class="d-flex justify-content-center" style="padding: 2rem;">
         <div class="jumbotron text-center" id="userContainer">
           <form class="form" action="/users" method="post">
             <div class="form-group">
@@ -35,7 +33,7 @@
             <button type="submit" class="btn btn-primary">Sign Up</button>
           </form>
         </div>
-      </div>
+      </main>
 
     <%- include('../static/partials/baseScripts'); %>
   </body>
