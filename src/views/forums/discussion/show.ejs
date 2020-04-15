@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../../static/partials/banner'); %>
+    <%- include('../../static/partials/navbar'); %>
+    <%- include('../../static/partials/messages'); %>
+
+    <h2 class="text-center" id="headerFonts"><%= discussion.title %></h2>
+
+    <main class="container">
+      <nav aria-label="breadcrumb" style="height: 3rem; width: fit-content;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active"><a href=<%= "/forums?page=1" %>>Forums</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><%= discussion.title %></li>
+        </ol>
+      </nav>
+
+      <div id="formContainer">
+        <p><%= discussion.description %></p>
+        <small class="text-muted">Posted: <%= discussion.createdAt %></small>
+        <div class="container row">
+          <a href="/forums/discussion/<%= discussion.id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+          <form action="/forums/discussion/<%= discussion.id %>/destroy" method="post">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../../static/partials/baseScripts'); %>
+  </body>
+</html>

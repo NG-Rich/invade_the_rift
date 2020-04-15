@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../../static/partials/banner'); %>
+    <%- include('../../static/partials/navbar'); %>
+    <%- include('../../static/partials/messages'); %>
+
+    <main class="container">
+      <h2 class="text-center" id="headerFonts">Edit Discussion</h2>
+
+      <form action="/forums/discussion/<%= discussion.id %>/update" method="post" id="formContainer">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input value="<%= discussion.title %>" class="form-control" type="text" name="title" aria-describedby="titleHelp" placeholder="Enter title">
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea class="form-control" name="description" rows="8" cols="80" aria-describedby="descriptionHelp" placeholder="Enter description"><%= discussion.description %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </main>
+
+    <%- include('../../static/partials/baseScripts'); %>
+  </body>
+</html>
