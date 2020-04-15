@@ -4,7 +4,7 @@ module.exports = {
   index(req, res, next) {
     discussionQueries.getAllDiscussions(req.query.page, (err, discussions) => {
       if(err) {
-        res.redirect(`forums?page=1`);
+        res.redirect("/forums?page=1");
       }else {
         res.render("forums/index", {discussions, page:req.query.page});
       }
@@ -30,7 +30,7 @@ module.exports = {
   show(req, res, next) {
     discussionQueries.showDiscussion(req.params.id, (err, discussion) => {
       if(err || discussion == null) {
-        res.redirect(404, `forums?page=1`);
+        res.redirect(404, `/forums?page=1`);
       }else {
         res.render("forums/discussion/show", {discussion});
       }
@@ -39,7 +39,7 @@ module.exports = {
   destroy(req, res, next) {
     discussionQueries.deleteDiscussion(req.params.id, (err, discussion) => {
       if(err) {
-        res.redirect(500, `forums/discussion/${discussion.id}`);
+        res.redirect(500, `/forums/discussion/${discussion.id}`);
       }else {
         res.redirect(303, "/forums?page=1");
       }
@@ -48,7 +48,7 @@ module.exports = {
   edit(req, res, next) {
     discussionQueries.showDiscussion(req.params.id, (err, discussion) => {
       if(err || discussion == null) {
-        res.redirect(404, "forums?page=1");
+        res.redirect(404, "/forums?page=1");
       }else {
         res.render("forums/discussion/edit", {discussion});
       }
@@ -57,7 +57,7 @@ module.exports = {
   update(req, res, next) {
     discussionQueries.updateDiscussion(req.params.id, req.body, (err, discussion) => {
       if(err || discussion == null) {
-        res.redirect(404, `forums/discussion/${req.params.id}/edit`);
+        res.redirect(404, `/forums/discussion/${req.params.id}/edit`);
       }else {
         res.render("forums/discussion/show", {discussion});
       }
