@@ -21,7 +21,7 @@ module.exports = {
 
     discussionQueries.createDiscussion(newDiscussion, (err, discussion) => {
       if(err) {
-        res.redirect(500, "forums/discussion/new");
+        res.redirect(500, "new");
       }else {
         res.redirect(303, `${discussion.id}`)
       }
