@@ -30,7 +30,7 @@ module.exports = {
   show(req, res, next) {
     discussionQueries.showDiscussion(req.params.id, (err, discussion) => {
       if(err || discussion == null) {
-        res.redirect(404, "forums");
+        res.redirect(404, `forums?page=1`);
       }else {
         res.render("forums/discussion/show", {discussion});
       }
@@ -41,14 +41,14 @@ module.exports = {
       if(err) {
         res.redirect(500, `forums/discussion/${discussion.id}`);
       }else {
-        res.redirect(303, "/forums");
+        res.redirect(303, "/forums?page=1");
       }
     });
   },
   edit(req, res, next) {
     discussionQueries.showDiscussion(req.params.id, (err, discussion) => {
       if(err || discussion == null) {
-        res.redirect(404, "forums");
+        res.redirect(404, "forums?page=1");
       }else {
         res.render("forums/discussion/edit", {discussion});
       }
