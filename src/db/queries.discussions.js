@@ -1,4 +1,5 @@
 const Discussion = require("./models").Discussion;
+const Post = require("./models").Post;
 
 module.exports = {
   getAllDiscussions(page = 1, callback) {
@@ -28,7 +29,12 @@ module.exports = {
     });
   },
   showDiscussion(id, callback) {
-    return Discussion.findByPk(id)
+    return Discussion.findByPk(id, {
+      include: [{
+        model: Post,
+        as: "posts"
+      }]
+    })
     .then((discussion) => {
       callback(null, discussion);
     })
@@ -48,7 +54,12 @@ module.exports = {
     });
   },
   updateDiscussion(id, updatedDiscussion, callback) {
-    return Discussion.findByPk(id)
+    return Discussion.findByPk(id, {
+      include: [{
+        model: Post,
+        as: "posts"
+      }]
+    })
     .then((discussion) => {
       if(!discussion) {
         return callback("Discussion not found!");
