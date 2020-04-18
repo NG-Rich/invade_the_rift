@@ -8,21 +8,32 @@
     <%- include('../static/partials/navbar'); %>
     <%- include('../static/partials/messages'); %>
 
-    <main class="container text-center">
+    <main class="container">
+      <h2 class="text-center" id="headerFonts">Forums</h2>
 
-      <h2 id="headerFonts">Forums</h2>
-
-      <nav aria-label="breadcrumb" style="height: 3rem; width: fit-content;">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Forums</li>
-        </ol>
-      </nav>
+      <div class="d-flex">
+        <div class="mr-auto">
+          <nav aria-label="breadcrumb" id="breadcrumbNav">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Forums</li>
+            </ol>
+          </nav>
+        </div>
+        <div>
+          <a href="/forums/discussion/new">
+            <button type="submit" class="btn btn-success btn-lg">New Discussion</button>
+          </a>
+        </div>
+      </div>
 
       <ul class="list-group">
         <% discussions.forEach((discussion) => { %>
           <li class="list-group-item">
             <a href="/forums/discussion/<%= discussion.id %>"> <%= discussion.title %> </a>
+            <p>
+              <small class="text-muted">By (insert currentuser): <%= discussion.createdAt %></small>
+            </p>
           <!--  <small class="text-muted"><%= discussion.description %></small> maybe add this-->
           </li>
         <% }) %>
@@ -30,19 +41,22 @@
 
       <nav class="justify-content-right" aria-label="pageNavigation">
         <ul class="pagination justify-content-end">
-          <a href="/forums/discussion/new">
-            <button type="submit" class="btn btn-success btn">New Discussion</button>
-          </a>
+        <% if(page <= 1) { %>
+          <li class="page-item disabled">
+        <% }else { %>
           <li class="page-item">
+        <% } %>
             <a class="page-link" href=<%= `/forums?page=${parseInt(page) - 1}` %> tabindex="-1" aria-label="Previous">
               Previous
             </a>
           </li>
+        <% if(page > 1) { %>
           <li class="page-item">
             <a class="page-link" href=<%= `/forums?page=${parseInt(page) - 1}` %>>
               <%= parseInt(page) - 1 %>
             </a>
           </li>
+        <% } %>
           <li class="page-item active">
             <a class="page-link" href=<%= `/forums?page=${parseInt(page) + 1}` %>>
               <%= page %>
@@ -53,7 +67,11 @@
               <%= parseInt(page) + 1  %>
             </a>
           </li>
+        <% if(page == 0) { %> <!-- fix this -->
+          <li class="page-item disabled">
+        <% }else { %>
           <li class="page-item">
+        <% } %>
             <a class="page-link" href=<%= `/forums?page=${parseInt(page) + 1}` %> aria-label="Next">
               Next
             </a>

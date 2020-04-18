@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../../../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../../../static/partials/banner'); %>
+    <%- include('../../../static/partials/navbar'); %>
+    <%- include('../../../static/partials/messages'); %>
+
+    <main class="container">
+      <h2 class="text-center" id="headerFonts">New Post</h2>
+
+      <%- include('../../../static/partials/breadcrumbNav'); %>
+
+      <div id="formContainer">
+        <form action="/forums/discussion/<%= discussion.id %>/post/create" method="post">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input class="form-control" type="text" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
+          </div>
+          <div class="form-group">
+            <label for="body">Body:</label>
+            <textarea class="form-control" name="body" rows="4" cols="80" aria-describedby="bodyHelp" placeholder="Enter Post"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </main>
+
+    <%- include('../../../static/partials/baseScripts'); %>
+  </body>
+</html>

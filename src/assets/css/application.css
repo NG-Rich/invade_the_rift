@@ -8,6 +8,7 @@ body {
 
 #headerFonts {
   padding: .5rem;
+  color: #007bff;
 }
 
 #backgroundImg {
@@ -25,7 +26,12 @@ body {
   padding: 2rem;
   background-color: white;
   border-radius: .2rem;
-  width: 58rem;
+  width: auto;
+}
+
+#breadcrumbNav {
+  height: 3rem;
+  width: fit-content;
 }
 
 .alert {
