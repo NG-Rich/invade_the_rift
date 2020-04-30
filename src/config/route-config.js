@@ -5,6 +5,11 @@ module.exports = {
     const forumRoutes = require("../routes/forums");
     const postRoutes = require("../routes/posts");
 
+    if(process.env.NODE_ENV === "test") {
+      const mockAuth = require("../../spec/support/mock-auth.js");
+      mockAuth.fakeIt(app);
+    }
+
     app.use(staticRoutes);
     app.use(userRoutes);
     app.use(forumRoutes);

@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {});
   Discussion.associate = function(models) {
@@ -15,7 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     Discussion.hasMany(models.Post, {
       foreignKey: "discussionId",
       as: "posts"
-    })
+    });
+
+    Discussion.belongsTo(models.User, {
+      foreignKey: "userId",
+      onDelete: "CASCADE"
+    });
   };
   return Discussion;
 };

@@ -1,38 +1,50 @@
 const sequelize = require("../../src/db/models/index").sequelize;
 const Discussion = require("../../src/db/models").Discussion;
 const Post = require("../../src/db/models").Post;
+const User = require("../../src/db/models").User;
 
 describe("Post", () => {
 
   beforeEach((done) => {
     this.discussion;
     this.post;
+    this.user;
 
     sequelize.sync({force: true})
     .then((res) => {
 
-      Discussion.create({
-        title: "Best Champs",
-        description: "What are the best champs?"
+      User.create({
+        username: "Admin",
+        email: "admin@example.com",
+        password: "123456"
       })
-      .then((discussion) => {
-        this.discussion = discussion;
+      .then((user) => {
+        this.user = user;
 
-        Post.create({
-          title: "Draven Best",
-          body: "Draven is the best champ!",
-          discussionId: this.discussion.id
+        Discussion.create({
+          title: "Best Champs",
+          description: "What are the best champs?"
         })
-        .then((post) => {
-          this.post = post;
-          done();
-        });
+        .then((discussion) => {
+          this.discussion = discussion;
+
+          Post.create({
+            title: "Draven Best",
+            body: "Draven is the best champ!",
+            discussionId: this.discussion.id,
+            userId: this.user.id
+          })
+          .then((post) => {
+            this.post = post;
+            done();
+          })
+        })
       })
       .catch((err) => {
         console.log(err);
         done();
       });
-    });
+    }); // End of res
   }); // End of beforeEach
 
   describe("#create()", () => {
@@ -41,7 +53,8 @@ describe("Post", () => {
       Post.create({
         title: "Teemo is BEST",
         body: "Teemo is the best champ!",
-        discussionId: this.discussion.id
+        discussionId: this.discussion.id,
+        userId: this.user.id
       })
       .then((post) => {
         expect(post.title).toBe("Teemo is BEST");

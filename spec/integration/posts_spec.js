@@ -4,38 +4,64 @@ const base = "http://localhost:3000/forums/discussion/";
 const sequelize = require("../../src/db/models/index").sequelize;
 const Discussion = require("../../src/db/models").Discussion;
 const Post = require("../../src/db/models").Post;
+const User = require("../../src/db/models").User;
 
 describe("routes : post", () => {
 
   beforeEach((done) => {
     this.discussion;
     this.post;
+    this.user;
 
     sequelize.sync({force: true})
     .then((res) => {
-      Discussion.create({
-        title: "Best Champs",
-        description: "What are the best champs?"
-      })
-      .then((discussion) => {
-        this.discussion = discussion;
 
-        Post.create({
-          title: "Draven BEST",
-          body: "Draven is the best!",
-          discussionId: this.discussion.id
+      User.create({
+        username: "Admin",
+        email: "admin@example.com",
+        password: "123456",
+        role: "admin"
+      })
+      .then((user) => {
+        this.user = user;
+
+        Discussion.create({
+          title: "Best Champs",
+          description: "What are the best champs?",
+          userId: this.user.id
         })
-        .then((post) => {
-          this.post = post;
+        .then((discussion) => {
+          this.discussion = discussion;
+
+          Post.create({
+            title: "Draven is BEST",
+            body: "Draven is the best champ",
+            discussionId: this.discussion.id,
+            userId: this.user.id
+          })
+          .then((post) => {
+            this.post = post;
+            done();
+          })
+        })
+
+        request.get({
+          url: "http://localhost:3000/auth/fake",
+          form: {
+            role: this.user.role,
+            userId: this.user.id,
+            email: this.user.email
+          }
+        }, (err, res, body) => {
           done();
         })
-        .catch((err) => {
-          console.log(err);
-          done();
-        });
-      });
-    });
-  });
+      })
+      .catch((err) => {
+        console.log(err);
+        done();
+      })
+    }); // End of res
+  }); // End of beforeEach
 
   describe("GET /forums/discussion/:id/post/new", () => {
 
@@ -56,7 +82,8 @@ describe("routes : post", () => {
         url: `${base}${this.discussion.id}/post/create`,
         form: {
           title: "Draven is BEST",
-          body: "Draven is the best champ"
+          body: "Draven is the best champ",
+          userId: this.user.id
         }
       };
 
@@ -66,6 +93,7 @@ describe("routes : post", () => {
           expect(post).not.toBeNull();
           expect(post.title).toBe("Draven is BEST");
           expect(post.body).toBe("Draven is the best champ");
+          expect(post.userId).toBe(1);
           expect(post.discussionId).not.toBeNull();
           done();
         })
@@ -116,7 +144,8 @@ describe("routes : post", () => {
         url: `${base}${this.discussion.id}/post/${this.post.id}/update`,
         form: {
           title: "Support Champs MVP",
-          body: "Support champs are the best"
+          body: "Support champs are the best",
+          userId: this.user.id
         }
       }, (err, res, body) => {
         expect(res.statusCode).toBe(302);
@@ -128,7 +157,7 @@ describe("routes : post", () => {
       const options = {
         url: `${base}${this.discussion.id}/post/${this.post.id}/update`,
         form: {
-          title: "Support Champs MVP"
+          title: "Draven is BEST"
         }
       };
 
@@ -137,7 +166,7 @@ describe("routes : post", () => {
 
         Post.findOne({where: {id: this.post.id}})
         .then((post) => {
-          expect(post.title).toBe("Support Champs MVP");
+          expect(post.title).toBe("Draven is BEST");
           done();
         });
       });
