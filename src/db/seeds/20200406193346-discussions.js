@@ -6,6 +6,7 @@ for(let i = 1; i <= 20; i++) {
   discussions.push({
     title: "Discussion About Champ " + [i],
     description: "Filler description over here!",
+    userId: 1,
     createdAt: new Date(),
     updatedAt: new Date()
   });
