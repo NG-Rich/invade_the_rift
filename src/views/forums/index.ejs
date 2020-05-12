@@ -58,7 +58,7 @@
               <%= parseInt(page) - 1 %>
             </a>
           </li>
-        <% }else if(page == maxPageSize) { %>
+        <% }else if(page >= 3) { %>
           <li class="page-item">
             <a class="page-link" href=<%= `/forums?page=${parseInt(page) - 2}` %>>
               <%= parseInt(page) - 2 %>
