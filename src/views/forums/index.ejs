@@ -52,22 +52,49 @@
               Previous
             </a>
           </li>
-        <% if(page > 1) { %>
+        <% if(page > 1 && page != maxPageSize) { %>
+          <li class="page-item">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page) - 1}` %>>
+              <%= parseInt(page) - 1 %>
+            </a>
+          </li>
+        <% }else if(page == maxPageSize) { %>
+          <li class="page-item">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page) - 2}` %>>
+              <%= parseInt(page) - 2 %>
+            </a>
+          </li>
+        <% } %>
+        <% if(page != maxPageSize) { %>
+          <li class="page-item active">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page)}` %>>
+              <%= page %>
+            </a><span class="sr-only">(current)</span>
+          </li>
+        <% }else { %>
           <li class="page-item">
             <a class="page-link" href=<%= `/forums?page=${parseInt(page) - 1}` %>>
               <%= parseInt(page) - 1 %>
             </a>
           </li>
         <% } %>
-          <li class="page-item active">
-            <a class="page-link" href=<%= `/forums?page=${parseInt(page) + 1}` %>>
-              <%= page %>
-            </a><span class="sr-only">(current)</span>
-          </li>
         <% if(page < maxPageSize) { %>
           <li class="page-item">
             <a class="page-link" href=<%= `/forums?page=${parseInt(page) + 1}` %>>
               <%= parseInt(page) + 1  %>
+            </a>
+          </li>
+        <% } %>
+        <% if(page == maxPageSize) { %>
+          <li class="page-item active">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page)}` %>>
+              <%= page %>
+            </a><span class="sr-only">(current)</span>
+          </li>
+        <% }else if(page == 1 && maxPageSize > 2) { %>
+          <li class="page-item">
+            <a class="page-link" href=<%= `/forums?page=${parseInt(page) + 2}` %>>
+              <%= parseInt(page) + 2 %>
             </a>
           </li>
         <% } %>
