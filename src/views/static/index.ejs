@@ -10,10 +10,22 @@
 
       <main class="container text-center" id="landingNews">
         <div class="row justify-content-around" id="headerFonts">
-          <div class="col-4 border border-dark bg-dark rounded">
-            <h4 class="text-white">Trending Discussions</h4>
+          <div class="col-4 border border-dark bg-dark rounded" style="max-width: 100%;">
+            <h4 class="text-white">Latest Discussions</h4>
+            <% if(discussions) { %>
+              <% discussions.forEach((discussion) => { %>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <a href="/forums/discussion/<%= discussion.id %>"><%= discussion.title %></a>
+                    <div>
+                      <small class="text-muted">Posted by: <%= discussion.User.username %></small>
+                    </div>
+                  </li>
+                </ul>
+              <% }) %>
+            <% } %>
           </div>
-          <div class="col-4 border border-dark bg-dark rounded">
+          <div class="col-4 border border-dark bg-dark rounded" style="max-width: 100%;">
             <h4 class="text-white">Official News</h4>
           </div>
         </div>

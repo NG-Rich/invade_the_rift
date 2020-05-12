@@ -83,6 +83,8 @@ module.exports = {
       include: [{
         model: Post,
         as: "posts"
+      }, {
+        model: User
       }]
     })
     .then((discussion) => {
@@ -107,28 +109,5 @@ module.exports = {
         callback("Forbidden");
       }
     });
-/*
-    return Discussion.findByPk(id, {
-      include: [{
-        model: Post,
-        as: "posts"
-      }]
-    })
-    .then((discussion) => {
-      if(!discussion) {
-        return callback("Discussion not found!");
-      }
-
-      discussion.update(updatedDiscussion, {
-        fields: Object.keys(updatedDiscussion)
-      })
-      .then(() => {
-        callback(null, discussion);
-      })
-      .catch((err) => {
-        callback(err);
-      });
-    });
-    */
   }
 }

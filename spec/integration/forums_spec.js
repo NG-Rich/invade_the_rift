@@ -20,7 +20,8 @@ function authorizeUser(role, done) {
       form: {
         role: user.role,
         userId: user.id,
-        email: user.email
+        email: user.email,
+        username: user.username
       }
     }, (err, res, body) => {
       done();

@@ -1,5 +1,13 @@
+const staticQueries = require("../db/queries.static.js");
+
 module.exports = {
   index(req, res, next) {
-    res.render("static/index");
+    staticQueries.showLatestEntries((err, discussions) => {
+      if(err) {
+        req.flash("notice", "Can't display pages");
+      }else {
+        res.render("static/index", {discussions});
+      }
+    });
   }
 }

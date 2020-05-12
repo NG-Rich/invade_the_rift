@@ -3,18 +3,65 @@ const server = require("../../src/server");
 const base = "http://localhost:3000/users/";
 const sequelize = require("../../src/db/models/index").sequelize;
 const User = require("../../src/db/models").User;
+const Discussion = require("../../src/db/models").Discussion;
+const Post = require("../../src/db/models").Post;
 
 describe("routes : User ", () => {
 
   beforeEach((done) => {
+    this.user;
+    this.discussion;
+    this.post;
+
     sequelize.sync({force: true})
-    .then(() => {
-      done();
+    .then((res) => {
+
+      User.create({
+        username: "Admin",
+        email: "admin@example.com",
+        password: "123456",
+        role: "admin"
+      })
+      .then((user) => {
+        this.user = user;
+
+        Discussion.create({
+          title: "Best Champs",
+          description: "What are your favorite champs?",
+          userId: this.user.id
+        })
+        .then((discussion) => {
+          this.discussion = discussion;
+
+          Post.create({
+            title: "Draven is BEST",
+            body: "Draven is my favorite!",
+            discussionId: this.discussion.id,
+            userId: this.user.id
+          })
+          .then((post) => {
+            this.post = post;
+            done();
+          })
+        })
+
+        request.get({
+          url: "http://localhost:3000/auth/fake",
+          form: {
+            email: this.user.email,
+            role: this.user.role,
+            userId: this.user.id,
+            username: this.user.username
+          }
+        }, (err, res, body) => {
+          done();
+        })
+      })
     })
     .catch((err) => {
       console.log(err);
       done();
-    });
+    })
   }); // End of beforeEach
 
   describe("GET /users/sign_up", () => {
@@ -38,7 +85,8 @@ describe("routes : User ", () => {
         form: {
           username: "admin",
           email: "admin@example.com",
-          password: "123456"
+          password: "123456",
+          role: "admin"
         }
       };
 
@@ -65,7 +113,8 @@ describe("routes : User ", () => {
         form: {
           username: "admino",
           email: "totally-validEMAIL",
-          password: "123456"
+          password: "123456",
+          role: "member"
         }
       };
 
@@ -96,5 +145,24 @@ describe("routes : User ", () => {
     }); // End of sign_in page
 
   }); // End of GET users/sign_in describe
+
+  describe("GET /users/:id", () => {
+
+    it("should render a view for user's profile", (done) => {
+      request.get(`${base}${this.user.username}`, (err, res, body) => {
+        expect(res.statusCode).toBe(200);
+        done();
+      });
+    }); // End of userprofile
+
+    it("should list the discussions and posts a user has made", (done) => {
+      request.get(`${base}${this.user.username}`, (err, res, body) => {
+        expect(body).toContain("Best Champs");
+        expect(body).toContain("Draven is BEST");
+        done();
+      });
+    }); // End of discussion/post display
+
+  }); // End of users/:id
 
 }); // End of routes : User

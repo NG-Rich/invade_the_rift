@@ -27,18 +27,21 @@
         <li>
           <a class="nav-link" href="/forums?page=1">Forums</a>
         </li>
-        <% if(currentUser) { %>
-          <li>
-            <a class="nav-link" href="/users/sign_out">Sign Out</a>
-          </li>
-        <% }else { %>
-          <li>
-            <a class="nav-link" href="/users/sign_in">Sign In</a>
-          </li>
-          <li>
-            <a class="nav-link" href="/users/sign_up">Sign Up</a>
-          </li>
-        <% } %>
+      <% if(currentUser) { %>
+        <li>
+          <a class="nav-link" href="/users/<%= currentUser.username %>">My Profile</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/users/sign_out">Sign Out</a>
+        </li>
+      <% }else { %>
+        <li>
+          <a class="nav-link" href="/users/sign_in">Sign In</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/users/sign_up">Sign Up</a>
+        </li>
+      <% } %>
       </ul>
     </div>
   </nav>
