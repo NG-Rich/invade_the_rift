@@ -29,6 +29,19 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "userId",
       onDelete: "CASCADE"
     });
-  };
+
+    Post.addScope("fiveLatest", (userId) => {
+      return {
+        include: [{
+          model: models.Discussion
+        }],
+        where: {
+          userId: userId
+        },
+        limit: 5,
+        order: [["createdAt", "DESC"]]
+      }
+    });
+  }; // End of assocations
   return Post;
 };
