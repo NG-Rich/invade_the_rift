@@ -12,9 +12,10 @@ body {
 }
 
 #backgroundImg {
-  background-image: url('../images/JEdnVm.png');
+  background-image: url('../images/JEdnVm.jpg');
   background-repeat: no-repeat;
   background-size: 120%;
+  background-color: black;
 }
 
 #userContainer {
