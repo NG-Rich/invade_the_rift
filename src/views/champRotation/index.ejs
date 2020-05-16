@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../static/partials/banner'); %>
+    <%- include('../static/partials/navbar'); %>
+    <%- include('../static/partials/messages'); %>
+
+    <main class="container">
+      <h2 class="text-center" id="headerFonts">Weekly Free Champ Rotation</h2>
+
+      <div class="container" id="formContainer">
+        <div class="d-flex flex-wrap justify-content-center list-group list-group-horizontal">
+          <% freeChampRotation.freeChampions.forEach((champion) => { %>
+            <li class="list-group-item">
+              <%= champion.name %>
+            </li>
+          <% }) %>
+        </div>
+      </div>
+
+      <h2 class="text-center" id="headerFonts">Free Champs For New Players</h2>
+
+      <div class="container" id="formContainer">
+        <div class="d-flex flex-wrap justify-content-center list-group list-group-horizontal">
+          <% freeChampRotation.freeChampionsForNewPlayers.forEach((champion) => { %>
+            <li class="list-group-item">
+              <%= champion.name %>
+            </li>
+          <% }) %>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../static/partials/baseScripts'); %>
+  </body>
+</html>

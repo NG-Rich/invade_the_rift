@@ -5,9 +5,10 @@ module.exports = {
   index(req, res, next) {
     discussionQueries.getAllDiscussions(req.query.page, (err, discussions, maxPageSize) => {
       if(err) {
-        res.redirect("/forums?page=1");
+        res.redirect("/");
       }else {
         if(err || req.query.page > maxPageSize) {
+          req.flash("notice", "Page not found!");
           res.redirect(`/forums?page=${maxPageSize}`);
         }else {
           res.render("forums/index", {discussions: discussions.rows, maxPageSize, page:req.query.page});

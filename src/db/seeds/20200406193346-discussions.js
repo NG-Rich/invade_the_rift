@@ -2,7 +2,7 @@
 
 let discussions = [];
 
-for(let i = 1; i <= 20; i++) {
+for(let i = 1; i <= 10; i++) {
   discussions.push({
     title: "Discussion About Champ " + [i],
     description: "Filler description over here!",
