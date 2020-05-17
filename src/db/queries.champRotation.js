@@ -1,4 +1,3 @@
-const request = require("request");
 let LeagueAPI = require("leagueapiwrapper");
 LeagueAPI = new LeagueAPI(process.env.RIOT_API_KEY, Region.NA);
 
