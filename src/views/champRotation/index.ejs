@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../static/partials/banner'); %>
+    <%- include('../static/partials/navbar'); %>
+    <%- include('../static/partials/messages'); %>
+
+    <main class="container">
+      <div style="padding: 1rem;">
+        <img src="images/freeChamps.png" class="rounded mx-auto d-block" alt="Free Champion Rotation Banner">
+      </div>
+
+      <div class="container" id="formContainer">
+        <div class="d-flex flex-wrap justify-content-center list-group list-group-horizontal">
+          <% freeChampRotation.freeChampions.forEach((champion) => { %>
+            <li class="list-group-item">
+              <a class="list-group text-center" href="#">
+                <img src="images/champion/<%= champion.id %>.png" width="50" height="50" alt="Champion Portrait">
+                <%= champion.name %>
+              </a>
+            </li>
+          <% }) %>
+        </div>
+      </div>
+
+      <div style="padding: 1rem;">
+        <img src="images/freeChampsNewbies.png" class="rounded mx-auto d-block" alt="Free Champion Rotation For New Accounts Banner">
+      </div>
+
+      <div class="container" id="formContainer">
+        <div class="d-flex flex-wrap justify-content-center list-group list-group-horizontal">
+          <% freeChampRotation.freeChampionsForNewPlayers.forEach((champion) => { %>
+            <li class="list-group-item">
+              <a class="list-group text-center" href="#">
+                <img src="images/champion/<%= champion.id %>.png" width="50" height="50" alt="Champion Portrait">
+                <%= champion.name %>
+              </a>
+            </li>
+          <% }) %>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../static/partials/baseScripts'); %>
+  </body>
+</html>
