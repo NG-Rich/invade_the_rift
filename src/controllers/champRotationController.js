@@ -1,4 +1,5 @@
 const champRotationQueries = require("../db/queries.champRotation.js");
+/* Keep this for future use
 const fs = require("fs");
 
 var readJson = (path, callback) => {
@@ -10,7 +11,7 @@ var readJson = (path, callback) => {
     }
   });
 }
-
+*/
 module.exports = {
   index(req, res, next) {
     champRotationQueries.getChampRotation((err, freeChampRotation) => {
@@ -18,6 +19,7 @@ module.exports = {
         req.flash("notice", "Could not get champion rotation!");
         res.redirect("/");
       }else {
+        //console.log(freeChampRotation);
         res.render("champRotation/index", {freeChampRotation});
       }
     });
