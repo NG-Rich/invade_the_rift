@@ -38,3 +38,8 @@ body {
 .alert {
   width: 58rem;
 }
+
+#bannerSize {
+  max-width: 75%;
+  height: auto;
+}
