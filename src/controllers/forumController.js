@@ -63,6 +63,7 @@ module.exports = {
       if(err) {
         res.redirect(`/forums/discussion/${req.params.id}`);
       }else {
+        req.flash("notice", "Discussion successfully deleted!");
         res.redirect("/forums?page=1");
       }
     });
@@ -88,6 +89,7 @@ module.exports = {
       if(err || discussion == null) {
         res.redirect(404, `/forums/discussion/${req.params.id}/edit`);
       }else {
+        req.flash("notice", "Discussion successfully updated!");
         res.render("forums/discussion/show", {discussion});
       }
     });

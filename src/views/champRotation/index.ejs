@@ -13,12 +13,12 @@
         <img src="images/freeChamps.png" class="rounded mx-auto d-block" id="bannerSize" alt="Free Champion Rotation Banner">
       </div>
 
-      <div class="container" id="formContainer">
+      <div class="container" id="formContainer" style="background: rgba(233, 236, 239, .5);">
         <div class="d-flex flex-wrap justify-content-center list-group list-group-horizontal">
           <% freeChampRotation.freeChampions.forEach((champion) => { %>
-            <li class="list-group-item">
+            <li class="rounded list-group-item">
               <a class="list-group text-center" href="#">
-                <img src="images/champion/<%= champion.id %>.png" width="50" height="50" alt="Champion Portrait">
+                <img class="rounded mx-auto d-block" src="images/champion/<%= champion.id %>.png" width="50" height="50" alt="Champion Portrait">
                 <%= champion.name %>
               </a>
             </li>
@@ -30,12 +30,12 @@
         <img src="images/freeChampsNewbies.png" class="rounded mx-auto d-block" id="bannerSize" alt="Free Champion Rotation For New Accounts Banner">
       </div>
 
-      <div class="container" id="formContainer">
+      <div class="container" id="formContainer" style="background: rgba(233, 236, 239, .5);">
         <div class="d-flex flex-wrap justify-content-center list-group list-group-horizontal">
           <% freeChampRotation.freeChampionsForNewPlayers.forEach((champion) => { %>
-            <li class="list-group-item">
+            <li class="rounded list-group-item">
               <a class="list-group text-center" href="#">
-                <img src="images/champion/<%= champion.id %>.png" width="50" height="50" alt="Champion Portrait">
+                <img class="rounded mx-auto d-block" src="images/champion/<%= champion.id %>.png" width="50" height="50" alt="Champion Portrait">
                 <%= champion.name %>
               </a>
             </li>

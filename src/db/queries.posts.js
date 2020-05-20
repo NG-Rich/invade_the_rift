@@ -32,7 +32,7 @@ module.exports = {
     });
   },
   getPost(id, callback) {
-    return Post.findByPk(id)
+    return Post.findByPk(id, {include: [{model: Discussion}]})
     .then((post) => {
       callback(null, post);
     })

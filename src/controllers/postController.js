@@ -45,8 +45,10 @@ module.exports = {
   destroy(req, res, next) {
     postQueries.deletePost(req, (err, post) => {
       if(err) {
+        req.flash("notice", "Something went wrong, couldn't delete post!");
         res.redirect(303, `/forums/discussion/${req.params.discussionId}`);
       }else {
+        req.flash("notice", "Post successfully deleted!");
         res.redirect(303, `/forums/discussion/${req.params.discussionId}`);
       }
     })
@@ -72,7 +74,25 @@ module.exports = {
       if(err || post == null) {
         res.redirect(404, `/forums/discussion/${req.params.discussionId}/post/${req.params.id}/edit`);
       }else {
+        req.flash("notice", "Post successfully updated!");
         res.redirect(302, `/forums/discussion/${req.params.discussionId}`);
+      }
+    });
+  },
+  show(req, res, next) {
+    postQueries.getPost(req.params.id, (err, post) => {
+      if(err || post == null) {
+        req.flash("notice", "Couldn't find post!");
+        res.redirect(404, `/forums/discussion/${req.params.discussionId}`);
+      }else {
+        const authorized = new Authorizer(req.user, post).edit();
+
+        if(authorized) {
+          res.render("forums/discussion/post/show", {post});
+        }else {
+          req.flash("notice", "You are not authorized to view this post");
+          res.redirect(`/forums/discussion/${req.params.discussionId}`);
+        }
       }
     });
   }

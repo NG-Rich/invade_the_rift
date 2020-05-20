@@ -11,13 +11,7 @@
     <main class="container">
       <h2 class="text-center" id="headerFonts">Edit Post</h2>
 
-      <nav aria-label="breadcrumb" id="breadcrumbNav">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item active"><a href="/forums?page=1">Forums</a></li>
-          <li class="breadcrumb-item active" aria-current="page"><%= post.title %></li>
-        </ol>
-      </nav>
+      <%- include('../../../static/partials/breadcrumbPosts'); %>
 
       <div id="formContainer">
         <form action="/forums/discussion/<%= post.discussionId %>/post/<%= post.id %>/update" method="post">

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../../../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../../../static/partials/banner'); %>
+    <%- include('../../../static/partials/navbar'); %>
+    <%- include('../../../static/partials/messages'); %>
+
+    <main class="container">
+      <h2 class="text-center" id="headerFonts"><%= post.title %></h2>
+
+      <%- include('../../../static/partials/breadcrumbPosts'); %>
+
+      <div id="formContainer">
+        <p><%= post.body %></p>
+        <small>Posted: <%= post.createdAt %></small>
+      <% if(currentUser && (currentUser.id == post.Discussion.userId || currentUser.role == 'admin')) { %>
+        <div class="container row">
+          <a href="/forums/discussion/<%= post.discussionId %>/post/<%= post.id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+          <form action="/forums/discussion/<%= post.discussionId %>/post/<%= post.id %>/destroy" method="post">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </div>
+      <% } %>
+      </div>
+    </main>
+
+    <%- include('../../../static/partials/baseScripts'); %>
+  </body>
+</html>

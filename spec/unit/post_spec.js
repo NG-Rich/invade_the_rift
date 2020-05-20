@@ -23,7 +23,8 @@ describe("Post", () => {
 
         Discussion.create({
           title: "Best Champs",
-          description: "What are the best champs?"
+          description: "What are the best champs?",
+          userId: this.user.id
         })
         .then((discussion) => {
           this.discussion = discussion;
@@ -69,7 +70,8 @@ describe("Post", () => {
 
     it("should not create a post object with invalid values", (done) => {
       Post.create({
-        title: "Teemo is BEST"
+        title: "Teemo is BEST",
+        discussionId: this.discussion.id
       })
       .then((post) => {
         // This is skipped
