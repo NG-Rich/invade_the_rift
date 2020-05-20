@@ -17,5 +17,7 @@ router.get("/forums/discussion/:discussionId/post/:id/edit",
 router.post("/forums/discussion/:discussionId/post/:id/update",
   validation.validatePosts,
   postController.update);
+router.get("/forums/discussion/:discussionId/post/:id",
+  postController.show);
 
 module.exports = router;

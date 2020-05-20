@@ -174,4 +174,16 @@ describe("routes : post", () => {
 
   }); // End of POST/post update
 
+  describe("GET /forums/discussion/:discussionId/post/:id/show", () => {
+
+    it("should render a view with the selected post", (done) => {
+      request.get(`${base}${this.post.discussionId}/post/${this.post.id}`, (err, res, body) => {
+        expect(res.statusCode).toBe(200);
+        expect(body).toContain("Draven is BEST");
+        done();
+      })
+    });
+
+  }); // End of GET/post show
+
 }); // End of routes:posts
