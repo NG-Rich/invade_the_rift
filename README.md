@@ -22,7 +22,7 @@ I've made test specs if you wish to run tests on the app features.
 7. `post_spec.js` which tests behavior of post resource.
 8. `champRotation_spec.js` which tests for the champ rotation resource.
 
-**NOTE:** If champRotation_spec fails and page doesn't load, it's because of the API used for development that RIOT uses. RIOT has it's dev API keys on a 24-hour duration until it expires and you need to register for a new one.
+**NOTE:** If champRotation_spec fails and page doesn't load, it's because of RIOT's dev API key runs on a 24-hour cycle in which you need to request for a new one after your current dev API key expires.
 
 All can be run with `npm test spec/(spec_folder)/(test_spec_here.js)`.
 (Further specs will be available when features are in progress)
