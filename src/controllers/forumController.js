@@ -38,10 +38,10 @@ module.exports = {
 
       discussionQueries.createDiscussion(newDiscussion, (err, discussion) => {
         if(err) {
-          req.flash("notice", "Something went wrong, please try again!");
+          req.flash("notice", "Couldn't create discussion, please try again!");
           res.redirect("/forums?page=1");
         }else {
-          res.redirect(303, `/forums/discussion/${discussion.id}`);
+          res.redirect(`/forums/discussion/${discussion.id}`);
         }
       });
     }else {
