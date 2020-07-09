@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../static/partials/banner'); %>
+    <%- include('../static/partials/navbar'); %>
+    <%- include('../static/partials/messages'); %>
+
+    <div class="container py-5">
+      <div id="formContainer">
+        <h3 class="text-center">
+          <%= pbe.title %>
+        </h3>
+        <div>
+          <%= pbe.body %>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../static/partials/baseScripts'); %>
+  </body>
+</html>

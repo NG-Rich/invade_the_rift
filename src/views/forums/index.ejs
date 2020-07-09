@@ -8,7 +8,7 @@
     <%- include('../static/partials/navbar'); %>
     <%- include('../static/partials/messages'); %>
 
-    <main class="container">
+    <div class="container">
       <h2 class="text-center" id="headerFonts">Forums</h2>
 
       <div class="d-flex">
@@ -22,22 +22,20 @@
         </div>
         <div>
         <% if(currentUser) { %>
-          <a href="/forums/discussion/new">
-            <button type="submit" class="btn btn-success btn-lg">New Discussion</button>
-          </a>
+          <a class="btn btn-success btn-lg" href="/forums/discussion/new">New Discussion</a>
         <% } %>
         </div>
       </div>
 
       <ul class="list-group">
         <% discussions.forEach((discussion) => { %>
-          <li class="list-group-item">
-            <a href="/forums/discussion/<%= discussion.id %>"> <%= discussion.title %> </a>
-            <p>
+          <a class="list-group-item list-group-item-action" href="/forums/discussion/<%= discussion.id %>">
+            <%= discussion.title %>
+            <div>
               <small class="text-muted">Posted: <%= discussion.createdAt %></small>
-            </p>
-          <!--  <small class="text-muted"><%= discussion.description %></small> maybe add this-->
-          </li>
+              <!--  <small class="text-muted"><%= discussion.description %></small> maybe add this-->
+            </div>
+          </a>
         <% }) %>
       </ul>
 
@@ -115,7 +113,7 @@
           </li>
         </ul>
       </nav>
-    </main>
+    </div>
 
     <%- include('../static/partials/baseScripts'); %>
   </body>
