@@ -111,7 +111,7 @@ describe("routes : forums", () => {
         request.post(options, (err, res, body) => {
           Discussion.findOne({where: {title: "Top Champs Bot"}})
           .then((discussion) => {
-            expect(res.statusCode).toBe(303);
+            expect(res.statusCode).toBe(302);
             expect(discussion.title).toBe("Top Champs Bot");
             expect(discussion.description).toBe("Top champions for botlane");
             expect(discussion.id).toBe(2);
@@ -252,7 +252,7 @@ describe("routes : forums", () => {
         request.post(options, (err, res, body) => {
           Discussion.findOne({where: {title: "Top Champs Bot"}})
           .then((discussion) => {
-            expect(res.statusCode).toBe(303);
+            expect(res.statusCode).toBe(302);
             expect(discussion.title).toBe("Top Champs Bot");
             expect(discussion.description).toBe("Top champions for botlane");
             expect(discussion.id).toBe(2);

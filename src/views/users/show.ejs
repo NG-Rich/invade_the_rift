@@ -17,8 +17,8 @@
             <h3 class="card-header">Recent Discussions</h3>
           <% if(discussions) { %>
             <% discussions.forEach((discussion) => { %>
-            <li class="list-group-item">
-              <a href="/forums/discussion/<%= discussion.id %>">
+            <li class="list-group-item list-group-item-action">
+              <a class="list-group-item-action" href="/forums/discussion/<%= discussion.id %>">
                 <%= discussion.title %>
               </a>
             </li>

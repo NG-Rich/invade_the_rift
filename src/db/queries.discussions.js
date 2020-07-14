@@ -82,7 +82,9 @@ module.exports = {
     return Discussion.findByPk(req.params.id, {
       include: [{
         model: Post,
-        as: "posts"
+        as: "posts", include: [{
+          model: User
+        }]
       }, {
         model: User
       }]

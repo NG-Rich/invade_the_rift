@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../static/partials/banner'); %>
+    <%- include('../static/partials/navbar'); %>
+    <%- include('../static/partials/messages'); %>
+
+    <h2 class="text-center" id="headerFonts">PBE News</h2>
+
+    <div class="container">
+      <% if(currentUser && currentUser.role == 'admin') { %>
+      <a class="btn btn-success btn-lg" href="/pbe/new">New PBE Post</a>
+      <% } %>
+      <% if(pbePosts) { %>
+        <% pbePosts.forEach((pbePost) => { %>
+          <ul class="list-group">
+            <a class="list-group-item list-group-item-action" href="/pbe/<%= pbePost.title %>">
+              <%= pbePost.title %>
+              <div>
+                <small class="list-group text-muted">Posted: <%= pbePost.createdAt %></small>
+              </div>
+            </a>
+          </ul>
+        <% }) %>
+      <% } %>
+    </div>
+
+
+    <%- include('../static/partials/baseScripts'); %>
+  </body>
+</html>
