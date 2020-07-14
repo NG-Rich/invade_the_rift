@@ -2,7 +2,11 @@ const Pbe = require("./models").Pbe;
 
 module.exports = {
   getAllPbePosts(callback) {
-    Pbe.findAll()
+    Pbe.findAll({
+      order: [
+        ["createdAt", "DESC"]
+      ]
+    })
     .then((pbePosts) => {
       callback(null, pbePosts);
     })
@@ -15,8 +19,8 @@ module.exports = {
       title: newPbe.title,
       body: newPbe.body
     })
-    .then((pbe) => {
-      callback(null, pbe);
+    .then((pbePost) => {
+      callback(null, pbePost);
     })
     .catch((err) => {
       callback(err);
@@ -24,8 +28,38 @@ module.exports = {
   },
   getPbe(req, callback) {
     Pbe.findOne({where: {title: req.params.title}})
-    .then((pbe) => {
-      callback(null, pbe);
+    .then((pbePost) => {
+      callback(null, pbePost);
+    })
+    .catch((err) => {
+      callback(err);
+    })
+  },
+  updatePbePost(req, updatedPbePost, callback) {
+    Pbe.findOne({where: {title: req.params.title }})
+    .then((pbePost) => {
+      if(!pbePost) {
+        callback("Not found! ");
+      }
+
+      pbePost.update(updatedPbePost, {
+        fields: Object.keys(updatedPbePost)
+      })
+      .then(() => {
+        callback(null, pbePost);
+      })
+      .catch((err) => {
+        callback(err);
+      })
+    })
+  },
+  deletePbePost(req, callback) {
+    Pbe.findOne({where: {title: req.params.title}})
+    .then((pbePost) => {
+      pbePost.destroy()
+      .then((pbePost) => {
+        callback(null, pbePost);
+      })
     })
     .catch((err) => {
       callback(err);
