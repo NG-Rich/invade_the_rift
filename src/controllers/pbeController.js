@@ -1,6 +1,7 @@
 const pbeQueries = require("../db/queries.pbe.js");
 const MarkdownIt = require("markdown-it"),
   md = new MarkdownIt();
+const Authorizer = require("../policies/application");
 
 module.exports = {
   index(req, res, next) {
@@ -14,22 +15,36 @@ module.exports = {
     })
   },
   new(req, res, next) {
-    res.render("pbe/new");
+    const authorized = new Authorizer(req.user)._isAdmin();
+
+    if(authorized) {
+      res.render("pbe/new");      
+    }else {
+      req.flash("notice", "You are not authorized to do this. ");
+      res.redirect("/pbe");
+    }
   },
   create(req, res, next) {
-    const newPbe = {
-      title: req.body.title,
-      body: req.body.body
-    }
+    const authorized = new Authorizer(req.user)._isAdmin();
 
-    pbeQueries.create(newPbe, (err, pbePost) => {
-      if(err) {
-        req.flash("notice", "Couldn't post PBE post");
-        res.redirect("/pbe");
-      }else {
-        res.redirect(`/pbe/${pbePost.title}`);
+    if(authorized) {
+      const newPbe = {
+        title: req.body.title,
+        body: req.body.body
       }
-    })
+
+      pbeQueries.create(newPbe, (err, pbePost) => {
+        if(err) {
+          req.flash("notice", "Couldn't create PBE post! ");
+          res.redirect("/pbe");
+        }else {
+          res.redirect(`/pbe/${pbePost.title}`);
+        }
+      });
+    }else {
+      req.flash("notice", "You are not authorized to do this. ");
+      res.redirect("/pbe");
+    }
   },
   show(req, res, next) {
     pbeQueries.getPbe(req, (err, pbePost) => {
@@ -44,19 +59,26 @@ module.exports = {
     });
   },
   edit(req, res, next) {
-    pbeQueries.getPbe(req, (err, pbePost) => {
-      if(err) {
-        req.flash("notice", "Couldn't retrieve PBE post!");
-        res.redirect("/pbe");
-      }else {
-        res.render("pbe/edit", {pbePost});
-      }
-    })
+    const authorized = new Authorizer(req.user)._isAdmin();
+
+    if(authorized) {
+      pbeQueries.getPbe(req, (err, pbePost) => {
+        if(err) {
+          req.flash("notice", "Couldn't retrieve PBE post! ");
+          res.redirect("/pbe");
+        }else {
+          res.render("pbe/edit", {pbePost});
+        }
+      });
+    }else {
+      req.flash("notice", "You are not authorized to do this. ");
+      res.redirect("/pbe");
+    }
   },
   update(req, res, next) {
     pbeQueries.updatePbePost(req, req.body, (err, pbePost) => {
       if(err || pbePost == null) {
-        req.flash("notice", "Couldn't update PBE post!");
+        req.flash("notice", "Couldn't update PBE post! ");
         res.redirect(`/pbe/${req.params.title}/edit`);
       }else {
         req.flash("notice", "PBE post updated!");
@@ -67,7 +89,7 @@ module.exports = {
   destroy(req, res, next) {
     pbeQueries.deletePbePost(req, (err, pbePost) => {
       if(err) {
-        req.flash("notice", "Couldn't delete PBE post!");
+        req.flash("notice", "Couldn't delete PBE post! ");
         res.redirect(`/pbe/${req.params.title}`);
       }else {
         req.flash("notice", "PBE post was deleted!");

@@ -1,4 +1,5 @@
 const Pbe = require("./models").Pbe;
+const Authorizer = require("../policies/application");
 
 module.exports = {
   getAllPbePosts(callback) {
@@ -42,24 +43,38 @@ module.exports = {
         callback("Not found! ");
       }
 
-      pbePost.update(updatedPbePost, {
-        fields: Object.keys(updatedPbePost)
-      })
-      .then(() => {
-        callback(null, pbePost);
-      })
-      .catch((err) => {
-        callback(err);
-      })
+      const authorized = new Authorizer(req.user, pbePost)._isAdmin();
+
+      if(authorized) {
+        pbePost.update(updatedPbePost, {
+          fields: Object.keys(updatedPbePost)
+        })
+        .then(() => {
+          callback(null, pbePost);
+        });
+      }else {
+        req.flash("notice", "You are not authorized to do this. ");
+        callback(401);
+      }
     })
+    .catch((err) => {
+      callback(err);
+    });
   },
   deletePbePost(req, callback) {
     Pbe.findOne({where: {title: req.params.title}})
     .then((pbePost) => {
-      pbePost.destroy()
-      .then((pbePost) => {
-        callback(null, pbePost);
-      })
+      const authorized = new Authorizer(req.user, pbePost)._isAdmin();
+
+      if(authorized) {
+        pbePost.destroy()
+        .then((pbePost) => {
+          callback(null, pbePost);
+        });
+      }else {
+        req.flash("notice", "You are not authorized to do this. ");
+        callback(401);
+      }
     })
     .catch((err) => {
       callback(err);

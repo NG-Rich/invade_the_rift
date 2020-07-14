@@ -11,7 +11,9 @@
     <h2 class="text-center" id="headerFonts">PBE News</h2>
 
     <div class="container">
+      <% if(currentUser && currentUser.role == 'admin') { %>
       <a class="btn btn-success btn-lg" href="/pbe/new">New PBE Post</a>
+      <% } %>
       <% if(pbePosts) { %>
         <% pbePosts.forEach((pbePost) => { %>
           <ul class="list-group">
