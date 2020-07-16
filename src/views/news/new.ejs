@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../static/partials/head'); %>
+  </head>
+  <body id="backgroundImg">
+    <%- include('../static/partials/banner'); %>
+    <%- include('../static/partials/navbar'); %>
+    <%- include('../static/partials/messages'); %>
+    
+    <div class="container">
+      <h2 class="text-center" id="headerFonts">New Post</h2>
+
+      <div id="formContainer">
+        <form action="/news/create" method="post">
+          <div class="form-group">
+            <input class="form-control" type="text" name="title" placeholder="Enter title">
+            <textarea class="form-control" name="body" id="" cols="30" rows="10" placeholder="Enter text"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit Post</button>
+        </form>
+      </div>
+    </div>
+
+    <%- include('../static/partials/baseScripts'); %>    
+  </body>
+</html>

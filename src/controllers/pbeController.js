@@ -1,6 +1,12 @@
 const pbeQueries = require("../db/queries.pbe.js");
 const MarkdownIt = require("markdown-it"),
-  md = new MarkdownIt();
+  md = new MarkdownIt().use(require("thingworx-markdown-it-video"), {
+    youtube: {width: 640, height: 390},
+    vimeo: {width: 500, height: 281},
+    vine: {width: 600, height: 600, embed: 'simple'},
+    prezi: {width: 550, height: 400}
+  })
+const markdownItAttrs = require("markdown-it-attrs");
 const Authorizer = require("../policies/application");
 
 module.exports = {
@@ -52,6 +58,12 @@ module.exports = {
         req.flash("notice", "Couldn't retrieve PBE post!");
         res.redirect("/pbe");
       }else {
+        md.use(markdownItAttrs, {
+          leftDelimiter: "{",
+          rightDelimiter: "}",
+          allowedAttributes: []
+        });
+
         pbePost.body = md.render(pbePost.body);
 
         res.render("pbe/show", {pbePost});
