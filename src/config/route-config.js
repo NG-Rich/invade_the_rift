@@ -6,6 +6,7 @@ module.exports = {
     const postRoutes = require("../routes/posts");
     const champRotationRoutes = require("../routes/champRotation");
     const pbeRoutes = require("../routes/pbe");
+    const newsRoutes = require("../routes/news");
 
     if(process.env.NODE_ENV === "test") {
       const mockAuth = require("../../spec/support/mock-auth.js");
@@ -18,5 +19,6 @@ module.exports = {
     app.use(postRoutes);
     app.use(champRotationRoutes);
     app.use(pbeRoutes);
+    app.use(newsRoutes);
   }
 }
