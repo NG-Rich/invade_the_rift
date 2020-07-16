@@ -27,6 +27,20 @@
           </div>
           <div class="col-4 border border-dark bg-dark rounded" style="max-width: 100%;">
             <h4 class="text-white">Latest News</h4>
+            <% if(newsPosts) { %>
+              <% newsPosts.forEach((newsPost) => { %>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <a href="/news/<%= newsPost.title %>"><%= newsPost.title %></a>
+                    <!--
+                    <div>
+                      <small class="text-muted">Posted on: <%= newsPost.createdAt %></small>
+                    </div>
+                    -->
+                  </li>
+                </ul>
+              <% }) %>
+            <% } %>
           </div>
         </div>
       </div>
