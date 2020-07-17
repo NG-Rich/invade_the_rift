@@ -38,3 +38,7 @@ body {
 .alert {
   width: 58rem;
 }
+
+.text-decoration-underline {
+  text-decoration: underline;
+}
