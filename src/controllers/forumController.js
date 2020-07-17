@@ -1,5 +1,12 @@
 const discussionQueries = require("../db/queries.discussions.js");
 const Authorizer = require("../policies/application");
+const MarkdownIt = require("markdown-it"),
+  md = new MarkdownIt().use(require("thingworx-markdown-it-video"), {
+    youtube: {width: 640, height: 390},
+    vimeo: {width: 500, height: 281},
+    vine: {width: 600, height: 600, embed: 'simple'},
+    prezi: {width: 550, height: 400}
+  })
 
 module.exports = {
   index(req, res, next) {
@@ -55,6 +62,8 @@ module.exports = {
         res.redirect("/forums?page=1");
       }
 
+      discussion.description = md.render(discussion.description);
+
       res.render("forums/discussion/show", {discussion});
     });
   },
@@ -89,6 +98,8 @@ module.exports = {
       if(err || discussion == null) {
         res.redirect(404, `/forums/discussion/${req.params.id}/edit`);
       }else {
+        discussion.description = md.render(discussion.description);
+
         req.flash("notice", "Discussion successfully updated!");
         res.render("forums/discussion/show", {discussion});
       }
