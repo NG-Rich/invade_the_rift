@@ -24,7 +24,7 @@
       </div>
 
       <div id="formContainer">
-        <p><%= discussion.description %></p>
+        <p><%- discussion.description %></p>
         <small class="text-muted">Posted by <%= discussion.User.username %> on: <%= discussion.createdAt %></small>
       <% if(currentUser && (currentUser.id == discussion.userId || currentUser.role == 'admin')) { %>
         <div class="container row">
@@ -42,7 +42,7 @@
         <% discussion.posts.forEach((post) => { %>
           <li class="list-group-item">
             <p style="background-color: lightgrey;"><%= post.User.username %> says: <%= post.title %></p>
-            <p><%= post.body %></p>
+            <p><%- post.body %></p>
           <% if(post.createdAt == post.updatedAt) { %><!-- fix this-->
             <small class="text-muted">Updated: <%= post.updatedAt %></small>
           <% } %>
