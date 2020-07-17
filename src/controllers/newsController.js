@@ -93,6 +93,8 @@ module.exports = {
         req.flash("notice", "Couldn't update News post");
         res.redirect(`/news/${req.params.title}`);
       }else {
+        newsPost.body = md.render(newsPost.body);
+
         req.flash("notice", "News post was updated!");
         res.redirect(`/news/${newsPost.title}`);
       }

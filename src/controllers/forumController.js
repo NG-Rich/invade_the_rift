@@ -98,6 +98,8 @@ module.exports = {
       if(err || discussion == null) {
         res.redirect(404, `/forums/discussion/${req.params.id}/edit`);
       }else {
+        discussion.description = md.render(discussion.description);
+
         req.flash("notice", "Discussion successfully updated!");
         res.render("forums/discussion/show", {discussion});
       }

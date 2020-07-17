@@ -93,6 +93,8 @@ module.exports = {
         req.flash("notice", "Couldn't update PBE post! ");
         res.redirect(`/pbe/${req.params.title}/edit`);
       }else {
+        pbePost.body = md.render(pbePost.body);
+
         req.flash("notice", "PBE post updated!");
         res.redirect(`/pbe/${pbePost.title}`);
       }

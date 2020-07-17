@@ -14,7 +14,7 @@
       <%- include('../../../static/partials/breadcrumbPosts'); %>
 
       <div id="formContainer">
-        <p><%- post.body %></p>
+        <p><%= post.body %></p>
         <small>Posted: <%= post.createdAt %></small>
       <% if(currentUser && (currentUser.id == post.Discussion.userId || currentUser.role == 'admin')) { %>
         <div class="container row">

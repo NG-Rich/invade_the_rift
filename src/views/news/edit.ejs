@@ -15,9 +15,7 @@
         <form action="/news/<%= newsPost.title %>/update" method="post">
           <div class="form-group">
             <input class="form-control" type="text" name="title" placeholder="Enter title" value="<%= newsPost.title %>">
-            <textarea class="form-control" name="body" id="" cols="30" rows="10" placeholder="Enter text">
-              <%- newsPost.body %>
-            </textarea>
+            <textarea class="form-control" name="body" id="" cols="30" rows="10" placeholder="Enter text"><%- newsPost.body %></textarea>
           </div>
           <button class="btn btn-primary" type="submit">Update Post</button>
         </form>
