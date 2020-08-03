@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../static/partials/head'); %>
+</head>
+<body id="backgroundImg">
+  <%- include('../static/partials/banner'); %>
+  <%- include('../static/partials/navbar'); %>
+  <%- include('../static/partials/messages'); %>
+  
+  <div class="container">
+    <h2 class="text-center" id="headerFonts">Champions</h2>
+
+    <div class="container" id="formContainer" style="background: rgba(233, 236, 239, .5);">
+      <% if(champions) { %>
+        <div class="d-flex flex-wrap justify-content-center list-group list-group-horizontal">
+          <% champions.forEach((champion) => { %>
+            <a class="list-group text-center" href="#">
+              <li class="rounded list-group-item">
+                <img class="rounded mx-auto d-block" src="images/champion/<%= champion %>.png" width="50" height="50" alt="Champion Portrait">
+                <%= champion %>
+              </li>
+            </a>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <%- include('../static/partials/baseScripts'); %>
+</body>
+</html>

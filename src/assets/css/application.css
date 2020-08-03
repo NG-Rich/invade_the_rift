@@ -6,6 +6,11 @@ body {
   padding: 2rem;
 }
 
+#abilityIcon {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
 #landingNews {
   padding: 2rem;
 }

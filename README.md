@@ -21,11 +21,13 @@ I've made test specs if you wish to run tests on the app features.
 6. `posts_spec.js` which tests for post resource.
 7. `post_spec.js` which tests behavior of post resource.
 8. `champRotation_spec.js` which tests for the champ rotation resource.
+9. `pbe_spec.js` which tests for the features of pbe resource.
+10. `news_spec.js` which tests for the features of the news resource.
 
-**NOTE:** If champRotation_spec fails and page doesn't load, it's because of RIOT's dev API key runs on a 24-hour cycle in which you need to request for a new one after your current dev API key expires.
+**NOTE:** championRotation_spec will fail and the page will not load because of RIOT's dev API key running on a 24-hour limit.
 
 All can be run with `npm test spec/(spec_folder)/(test_spec_here.js)`.
 (Further specs will be available when features are in progress)
 
 ### Usage
-Upon launching, you'll be presented with the landing page which displays the latest official League news and latest discussions. The navbar above will direct you whatever feature piques your interest! You can create an account which then provides you access to your profile page as well as forum features such as discussion/post CRUD options.
+Upon launching, you'll be presented with the landing page which displays the latest League news and latest discussions. The navbar above will direct you whatever feature piques your interest! You can create an account which then provides you access to your profile page as well as forum features such as discussion/post CRUD options.
