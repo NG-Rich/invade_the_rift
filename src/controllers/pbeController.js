@@ -77,7 +77,7 @@ module.exports = {
       pbeQueries.getPbe(req, (err, pbePost) => {
         if(err) {
           req.flash("notice", "Couldn't retrieve PBE post! ");
-          res.redirect("/pbe");
+          res.redirect(`/pbe/${req.params.title}/edit`);
         }else {
           res.render("pbe/edit", {pbePost});
         }
