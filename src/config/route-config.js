@@ -8,6 +8,8 @@ module.exports = {
     const pbeRoutes = require("../routes/pbe");
     const newsRoutes = require("../routes/news");
     const championsRoutes = require("../routes/champions");
+    const itemsRoutes = require("../routes/items");
+    const skillsRunesRoutes = require("../routes/skillsRunes");
 
     if(process.env.NODE_ENV === "test") {
       const mockAuth = require("../../spec/support/mock-auth.js");
@@ -22,5 +24,7 @@ module.exports = {
     app.use(pbeRoutes);
     app.use(newsRoutes);
     app.use(championsRoutes);
+    app.use(itemsRoutes);
+    app.use(skillsRunesRoutes);
   }
 }
