@@ -14,7 +14,7 @@ describe("routes : items", () => {
         expect(body).toContain("Items List");
         done();
       });
-    }); // End of landing page
+    }); // End of items page
 
   }); // End of "GET/items" describe
 
